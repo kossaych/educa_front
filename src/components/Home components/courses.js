@@ -21,7 +21,7 @@ const Courses = () => {
 
   useEffect(()=>{
 
-    fetch("https://educa-back.vercel.app/content/api/get_teacher_courses/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/get_teacher_courses/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",

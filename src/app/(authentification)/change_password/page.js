@@ -32,7 +32,7 @@ function ChangePassword() {
 
   function sendData() {
     setIsWait(true);
-    fetch("https://educa-back.vercel.app/content/api/change_password/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/change_password/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

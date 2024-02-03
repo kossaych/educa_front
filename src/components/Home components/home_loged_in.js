@@ -10,7 +10,7 @@ function HomeLogedIn() {
 
     useEffect(()=>{
   
-      fetch("https://educa-back.vercel.app/content/api/profile/", {
+      fetch("https://kossay.pythonanywhere.com/content/api/profile/", {
         method: "get",
         headers: {
           'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),

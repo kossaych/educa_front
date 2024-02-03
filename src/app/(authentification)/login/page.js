@@ -27,7 +27,7 @@ function Login(){
     const handleLogin = () => {
       setIsWait(true)
       setMessage('')
-      fetch("https://educa-back.vercel.app/content/api/login/",{
+      fetch("https://kossay.pythonanywhere.com/content/api/login/",{
         method:'post',
         headers: {
         'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ const Subject = (props) => {
 
   useEffect(()=>{
 
-    fetch("https://educa-back.vercel.app/content/api/subject/" +(props.params.id), {
+    fetch("https://kossay.pythonanywhere.com/content/api/subject/" +(props.params.id), {
       method: "get",
       headers: {
         'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -66,7 +66,7 @@ const Subject = (props) => {
               <div  className="w-8 h-8 border-4 border-gray-200 border-dashed rounded-full animate-spin m-auto z-40"></div>
               </div> : <><div className="mr-4">
                 <img
-                  src={"https://educa-back.vercel.app/media/" + subject.image}
+                  src={"https://kossay.pythonanywhere.com/media/" + subject.image}
 
                   alt={subject.title}
                   className="w-10 h-10 m-2"

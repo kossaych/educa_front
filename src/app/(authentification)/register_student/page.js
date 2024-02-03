@@ -42,7 +42,7 @@ function Register() {
   }
   
   useEffect(()=>{
-    fetch("https://educa-back.vercel.app/content/api/get_levels/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/get_levels/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function Register() {
           
         }
       });
-    fetch("https://educa-back.vercel.app/content/api/get_addreses/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/get_addreses/", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ function Register() {
 
   const handleRegistration = () => {
     setIsWait(true);
-    fetch("https://educa-back.vercel.app/content/api/register/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/register/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +115,7 @@ function Register() {
 
   const handleVerification = () => {
     setIsWait(true);
-    fetch("https://educa-back.vercel.app/content/api/activate/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/activate/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

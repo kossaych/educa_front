@@ -42,7 +42,7 @@ function Register() {
 
     const handleCreateCourse = () => { 
     setIsWaiting(true);
-    fetch("https://educa-back.vercel.app/content/api/course/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/course/", {
       method: "post",
       headers: {
          'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -72,7 +72,7 @@ function Register() {
   
    // fetch chapiters
    useEffect(()=>{
-    fetch("https://educa-back.vercel.app/content/api/get_teacher_desipline_chapiters/", {
+    fetch("https://kossay.pythonanywhere.com/content/api/get_teacher_desipline_chapiters/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
