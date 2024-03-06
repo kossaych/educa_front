@@ -27,7 +27,7 @@ function Login(){
     const handleLogin = () => {
       setIsWait(true)
       setMessage('')
-      fetch("https://kossay.pythonanywhere.com/content/api/login/",{
+      fetch("http://192.168.1.111:8000/content/api/login/",{
         method:'post',
         headers: {
         'Content-Type': 'application/json',

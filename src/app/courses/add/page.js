@@ -3,25 +3,29 @@ import React, { useEffect, useState } from "react";
 import Link from 'next/link';
 import PopUp from '/src/components/general/pop-up.js'
 import { VscAdd, VscDeviceCamera, VscDeviceCameraVideo, VscEdit, VscEye, VscEyeClosed, VscFile, VscFilePdf, VscGift, VscListFilter, VscListFlat, VscListOrdered, VscLock, VscMegaphone, VscScreenFull, VscScreenNormal, VscTrash, VscTriangleRight, VscWatch } from "react-icons/vsc";
-import { CiYoutube } from "react-icons/ci";
+import { CiTrash, CiYoutube } from "react-icons/ci";
 
 
 
 function Register() {
-  const inputStyle = "m-1 border focus:outline-none border-blue-200 rounded bg-blue-100 p-1"
-  const btnDiv  = "text-center grid grid-cols-1 place-items-center"
-  const activeBtn = "border rounded-md h-10 bg-blue-600 p-1 text-white w-1/2"
-  const inactiveBtn = "rounded-md border h-10 bg-gray-600 p-1 text-white "
+  const inputStyle = "m-1 border focus:outline-none border-blue-200 rounded bg-blue-100 p-1" 
   
   const [course, setCourse] = useState({ 
     title : '',
     chapiter : '',
-    status : 'unpublished', 
+    status : 'unpublished',  
+    levels :[]
  
   });
-
  
   const [chapiters, setChapiters] = useState([]);
+
+  const [selectedChapiter, setSelectedChapiter] = useState(
+    {
+        levels : []
+    }
+  );
+
 
 
   //////////////////// auxs ///////////////////////////////
@@ -42,7 +46,7 @@ function Register() {
 
     const handleCreateCourse = () => { 
     setIsWaiting(true);
-    fetch("https://kossay.pythonanywhere.com/content/api/course/", {
+    fetch("http://192.168.1.111:8000/content/api/course/", {
       method: "post",
       headers: {
          'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -67,12 +71,11 @@ function Register() {
               window.location = '/courses/update/' + data
             }
       
-    })};
+    })}; 
 
-  
    // fetch chapiters
    useEffect(()=>{
-    fetch("https://kossay.pythonanywhere.com/content/api/get_teacher_desipline_chapiters/", {
+    fetch("http://192.168.1.111:8000/content/api/get_teacher_desipline_chapiters/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -97,6 +100,45 @@ function Register() {
       });
    ;},[])
  
+   useEffect(()=>{
+
+    for(let i=0;i<chapiters.length;i++){
+        if (chapiters[i].id == course.chapiter){
+            setSelectedChapiter(chapiters[i])
+        }
+
+    }
+         
+   ;},[course])
+
+  const handleLevelSelection = (e) => {
+    console.log(e.target.checked,e.target.id)
+    console.log(course.levels)
+
+
+    
+    let HandledLevels = course.levels
+    if(e.target.checked) {
+      HandledLevels.push(e.target.id)
+    }else{
+      HandledLevels = course.levels.filter((level)=> level != e.target.id)
+    }
+    setCourse(prevCourse => ({
+      ...prevCourse,  
+      levels: HandledLevels  
+    }));
+
+
+
+
+
+    console.log(course.levels)
+  }
+
+
+ 
+
+
  
   return (
         <div className="text-center rounded bg-white  border    my-3 p-1 mx-3 ">
@@ -128,7 +170,26 @@ function Register() {
                                                                 ))}    
                                                         </select> 
                                           </div> 
-                          
+
+
+
+ 
+
+                                    <div className="border border-black rounded">
+                                            <h3> selectionez les niveaux qui peuvent voir ce cour</h3>
+                                            <div    className="  h-28 rounded overflow-scroll">
+                                                        {selectedChapiter.levels.map(level => (
+                                                              <div className="flex items-center justify-center">
+                                                                <input type="checkbox" class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700" key={level.id} id={level.id} onClick={(e) => {handleLevelSelection(e)}} />  {level.title} 
+                                                              </div>
+                                                           
+                                                            ))}
+                                                         
+                                            
+                                            </div>
+                                            <button    className="  "  > <CiTrash></CiTrash></button><br></br>  
+                                    </div> 
+
                     </div>  
             </div> 
             <div>
@@ -154,4 +215,3 @@ function Register() {
 }
 
 export default Register;
-
