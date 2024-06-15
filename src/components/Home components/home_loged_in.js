@@ -10,7 +10,7 @@ function HomeLogedIn() {
 
     useEffect(()=>{
   
-      fetch("http://192.168.1.111:8000/content/api/profile/", {
+      fetch("https://educabackend.pythonanywhere.com/content/api/profile/", {
         method: "get",
         headers: {
           'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),

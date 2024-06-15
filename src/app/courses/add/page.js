@@ -46,7 +46,7 @@ function Register() {
 
     const handleCreateCourse = () => { 
     setIsWaiting(true);
-    fetch("http://192.168.1.111:8000/content/api/course/", {
+    fetch("https://educabackend.pythonanywhere.com/content/api/course/", {
       method: "post",
       headers: {
          'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -75,7 +75,7 @@ function Register() {
 
    // fetch chapiters
    useEffect(()=>{
-    fetch("http://192.168.1.111:8000/content/api/get_teacher_desipline_chapiters/", {
+    fetch("https://educabackend.pythonanywhere.com/content/api/get_teacher_desipline_chapiters/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
