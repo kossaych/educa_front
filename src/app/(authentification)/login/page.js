@@ -3,6 +3,7 @@ import React from "react";
 import Link from 'next/link';
 import { useState } from "react";
 import PopUp from '/src/components/general/pop-up.js'
+import logo from '/src/components/Home components/Logo.jpg'
 
 function Login(){
     const inputStyle = "m-1 border focus:outline-none border-blue-200 rounded bg-blue-100 p-1"
@@ -27,7 +28,7 @@ function Login(){
     const handleLogin = () => {
       setIsWait(true)
       setMessage('')
-      fetch("https://educabackend.pythonanywhere.com/content/api/login/",{
+      fetch("http://192.168.1.111:8000/content/api/login/",{
         method:'post',
         headers: {
         'Content-Type': 'application/json',
@@ -63,9 +64,20 @@ function Login(){
       })}
 
     return(
-          <div className="text-center rounded bg-white  border border-blue-600 m-3 p-4">
+          <div className="text-center rounded bg-white  p-4  ">
+                       
                       <h1 className=" text-blue-500 text-2xl font-bold">Sign In</h1>
-                    
+
+                      <div className="">
+                        <Link href="/" className='flex justify-center flex-wrap items-center'>
+                          
+                          <img  src={logo.src} width='120px' className = 'rounded-full' alt="logo" />
+                          <span className=" hidden text-end">Educa</span>
+                        </Link>
+                        
+                          
+                      </div>   
+                            
                       <PopUp isOpen={isPopUpOpen} onClose={closePopUp} >
                        <h2 className="text-red-500 w-72">{message}</h2>       
                       </PopUp>
@@ -98,11 +110,12 @@ function Login(){
                         )}
                     
                       </div>
-                    
-                      <div className="mt-3 text-blue-700 text-center" >
+                      <br></br> <br></br>  <br></br> <br></br>
+                      <div className="mt-3 text-blue-700 " >
                         <Link href="/reset_password" className="text-decoration-none">Forgot password?</Link>
                       </div>
-                      <div className="mt-3 text-blue-700 text-center" >
+                 
+                      <div className="mt-3 text-blue-700  border border-blue-500 rounded-lg p-2" >
                         <Link href="/register" className="text-decoration-none">create account</Link>
                       </div>
           </div>

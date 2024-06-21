@@ -1,5 +1,5 @@
 'use client'
-import { CiBank, CiBitcoin, CiCoinInsert, CiCoins1, CiGlobe, CiHome,  CiMoneyBill,  CiMountain1,  CiWallet} from 'react-icons/ci'
+import { CiBank, CiBitcoin, CiCoinInsert, CiCoins1, CiFaceMeh, CiGlobe, CiHome,  CiMoneyBill,  CiMountain1,  CiUser,  CiWallet} from 'react-icons/ci'
 import {CiLogout} from 'react-icons/ci'
 import {VscAccount} from 'react-icons/vsc'
 import Link from 'next/link';
@@ -20,7 +20,7 @@ const Header = () => {
                 <Link href="/" className='flex justify-center flex-wrap items-center'>
                   
                   <img  src={logo.src} width='120px' className = 'rounded-full' alt="logo" />
-                  <span className="text-end">Educa</span>
+                  <span className=" hidden text-end">Educa</span>
                 </Link>
                 
                   
@@ -31,24 +31,19 @@ const Header = () => {
              
                   
                     <Link  className="ml-5 text-sm font-semibold leading-6 text-gray-900"  href='/' ><CiHome size={25}></CiHome>Home</Link>
-                    <Link href="#" className="ml-5 text-sm font-semibold leading-6 text-gray-900" onClick={logout}>
+                    <Link href="#" className="ml-5  text-sm font-semibold leading-6 text-gray-900"  >
                         <CiCoinInsert size={25} /> offes
                     </Link> 
-                    <Link href="#" className="ml-5 text-sm font-semibold leading-6 hidden text-gray-900">
-                          <CiWallet size={25} /> wallet
-                    </Link>
+                     
                   
-                    <Link href="/profile" className="ml-5 text-sm font-semibold leading-6 text-gray-900">
-                       <VscAccount size = {25} className='text-sm text-gray-600'/> Profile 
+                    <Link href="/profile" className="ml-5 text-sm font-semibold leading-6 text-gray-900"> 
+                      <CiUser  size = {25} className='text-sm text-gray-600'></CiUser> Profile 
                     </Link>
                 
                     <Link href="#"  className="ml-5 text-sm font-semibold leading-6 text-gray-900" onClick={logout}>
                         <CiLogout size={25} /> logout
                     </Link> 
-                     
-                    
-                   
-
+                      
                </div> 
             </nav>     
           </div>

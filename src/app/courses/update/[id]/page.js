@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from 'next/link';
 import PopUp from '/src/components/general/pop-up.js'
 import { VscAdd, VscDeviceCamera, VscDeviceCameraVideo, VscEdit, VscEye, VscEyeClosed, VscFile, VscFilePdf, VscGift, VscListFilter, VscListFlat, VscListOrdered, VscLock, VscMegaphone, VscScreenFull, VscScreenNormal, VscTrash, VscTriangleRight, VscWatch } from "react-icons/vsc";
-import { CiEdit, CiYoutube } from "react-icons/ci";
+import { CiBookmarkCheck, CiBoxList, CiEdit, CiTrash, CiYoutube } from "react-icons/ci";
 
 
 
@@ -43,7 +43,7 @@ function UpdateCourse(props) {
   );
 
   const [chapiters, setChapiters] = useState([]);
-
+  const [videoLevels,setVideoLevels] = useState([]);
 
   //////////////////// auxs ///////////////////////////////
   const [isWait, setIsWait] = useState(false);
@@ -73,7 +73,7 @@ function UpdateCourse(props) {
   
   // fetch chapiters
   useEffect(()=>{
-    fetch("https://educabackend.pythonanywhere.com/content/api/get_teacher_desipline_chapiters/", {
+    fetch("http://192.168.1.111:8000/content/api/get_teacher_desipline_chapiters/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function UpdateCourse(props) {
 
   // fetch course informations
   useEffect(()=>{
-    fetch("https://educabackend.pythonanywhere.com/content/api/course_pk/" + +(props.params.id), {
+    fetch("http://192.168.1.111:8000/content/api/course_pk/" + +(props.params.id), {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +128,7 @@ function UpdateCourse(props) {
 
    const handleUpdateCourse = () => {
 
-    fetch("https://educabackend.pythonanywhere.com/content/api/course_pk/" + +(props.params.id), {
+    fetch("http://192.168.1.111:8000/content/api/course_pk/" + +(props.params.id), {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -192,12 +192,7 @@ function UpdateCourse(props) {
       }
     
     };
-  
- 
-
-
-
- 
+   
      // Fonction pour mettre à jour le titre
      const handleVideoTitleChange = (newValue) => {
       setVideo({ ...video, title: newValue });
@@ -231,14 +226,10 @@ function UpdateCourse(props) {
 
           fetch(reader.result)
           .then((response) => response.blob())
-          .then((blob) => { 
-
+          .then((blob) => {  
               const contentUrl = URL.createObjectURL(blob);  
-              setNewVideo(contentUrl);
-               
-          })
- 
- 
+              setNewVideo(contentUrl);     
+          }) 
       }
  
       setVideo({ ...video, url: '' }); 
@@ -299,13 +290,13 @@ function UpdateCourse(props) {
           type : 'course',
           status : 'unpublished',
         });  
-        setNewVideo('')
-
+        setNewVideo('') 
       }
 
     const handleAddVideo = () => {
       setIsWaitAddVideo(true)
       var videoData = new FormData()
+
       videoData.append(' title',video.title) 
       videoData.append('url',video.url)
       videoData.append('attachment',video.attachment)
@@ -314,7 +305,11 @@ function UpdateCourse(props) {
       videoData.append('type',video.type)
       videoData.append('course',course.id)  
       videoData.append('status',video.status)  
-      fetch("https://educabackend.pythonanywhere.com/content/api/video/" , {
+      
+      videoData.append('levels',videoLevels)  
+   
+   
+      fetch("http://192.168.1.111:8000/content/api/video/" , {
         method: "post",
         headers: { 
           'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -350,9 +345,23 @@ function UpdateCourse(props) {
 
 
 
-
   }
  
+
+  const handleLevelSelection = (e) => {
+     
+    let HandledLevels = videoLevels
+    if(e.target.checked) {
+      HandledLevels.push(e.target.id)
+    }else{
+      HandledLevels = videoLevels.filter((level)=> level != e.target.id)
+    }
+    setVideoLevels(HandledLevels);
+     
+ 
+  }
+
+
 
 
   return (
@@ -362,20 +371,11 @@ function UpdateCourse(props) {
          { addVideoSectionDisplay ? <div onClick={hideAllDisplayedSctions} className=" bg-black opacity-30 z-5 h-screen top-0    left-0 fixed w-full">
 
           </div> : ''}
-
-
-
-
-
+ 
             <PopUp isOpen={isPopUpOpen} onClose={closePopUp} >
                                         <h2 className="text-red-500 w-72">{message}</h2>       
             </PopUp>  
-            <div className="flex flex-wrap">
-
-                
-
-
-
+            <div className="flex flex-wrap"> 
 
                     <div className="flex w-full items-end flex-wrap  justify-start">
                           <div className="text-center rounded bg-white  border   w-full md:w-3/4 xl:w-2/6  my-3 p-1 mx-3 "> 
@@ -421,7 +421,9 @@ function UpdateCourse(props) {
                                                     )} 
                           </div>         
                     </div> 
-                    <div className="  text-center rounded bg-white  border   w-full md:w-3/4 xl:w-1/2 my-3 p-4 mx-3 "> 
+                   
+                   
+                    <div className=" hidden  text-center rounded bg-white  border   w-full md:w-3/4 xl:w-1/2 my-3 p-4 mx-3 "> 
                                           <div  className="flex justify-between items-center " >
                                                               <h3 className="text-blue-500 text-2xl font-bold">Series</h3>
                                                         
@@ -510,6 +512,8 @@ function UpdateCourse(props) {
                                           </div>              
                           
                     </div>  
+                  
+                  
                     <div className="flex flex-wrap justify-around text-center rounded bg-white border w-full   my-3 m-1 p-1 "> 
                             <div className="" >         
                                   <div  className=" text-start m-1 flex justify-between" >
@@ -528,8 +532,11 @@ function UpdateCourse(props) {
                                                     <input disabled value={video.title} className="w-4/6 m-1 focus:outline-none bg-gray-200 rounded-lg p-1" /> 
                                         
                                                     <button className=" bg-green-100  flex items-center    text-xl m-1 rounded-full p-1.5"  >
-                                                      <CiEdit className=' text-emerald-800'></CiEdit>
-                                                      Edit
+                                                      <CiEdit className=' text-emerald-800'></CiEdit> 
+                                                    </button>
+                                                    <button className=" hidden bg-red-100  flex items-center    text-xl m-1 rounded-full p-1.5"  >
+                                                      
+                                                      <CiBookmarkCheck className=' text-red-800'></CiBookmarkCheck>
                                                     </button>
                                                   </div> 
                                           ))}
@@ -544,8 +551,8 @@ function UpdateCourse(props) {
                                         <div className="flex items-center justify-between">
                                             <span className="text-start text-lg font-extrabold "> Ajouter un video :</span>
                                           
-                                        </div>
-                                        
+                                        </div> 
+                          
                                         <div className="">
                                             <div className="bg-gray-100 flex items-center flex-wrap justify-between p-1 rounded-lg mb-1 w-full">
                               
@@ -634,15 +641,9 @@ function UpdateCourse(props) {
                                                                   />
                                                                   <div className=" border-dashed border-4 rounded-md p-3 border-gray-200"> 
                                                                     <VscDeviceCameraVideo></VscDeviceCameraVideo>  Clicker  selectioner un video
-                                                                  </div>
-                                                                  
-                                                                </label> }
-
-                                                          </div>
-
-
-
-
+                                                                  </div> 
+                                                                </label> } 
+                                                          </div> 
                                                           <div>
                                                               <div className='md:w-screen max-w-xl '>
                                                                   
@@ -655,7 +656,37 @@ function UpdateCourse(props) {
                                                                           }                      
                                                                   </div>  
                                                               </div>  
-                                                          </div>
+                                                          </div>       
+                                            </div> 
+                                        </div>    
+
+
+
+                                        <div className="border border-black rounded p-2">
+                                          <div className="flex justify-center items-center">
+                                            <h3> selectionez les niveaux qui peuvent voir cette video</h3>  
+                                            <button    className="hidden m-auto  rounded-lg p-2  bg-red-200"  > <CiTrash size={25}></CiTrash> </button>  
+                                            <button    className="hidden m-auto  rounded-lg p-2  bg-green-200"  > <CiBoxList size={25}></CiBoxList> </button>  
+                                          </div>
+                                                     <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-blue-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+
+                                                        {course.levels.map(level => (  
+                                                            <li>
+                                                            <div class="flex items-center p-2 rounded    ">
+                                                              <input id="checkbox-item-11" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" key={level.id} id={level.id} onClick={(e) => {handleLevelSelection(e)}} />  
+                                                              <label for="checkbox-item-11" class="w-full ms-2 text-sm font-medium text-gray-900 rounded  ">{level.title}</label>
+                                                            </div>
+                                                          </li> 
+                                                            ))}
+                                           
+                                                     </ul>  
+                                            
+                                           
+                                       </div> 
+
+
+ 
+                                   
 
 
 
@@ -663,13 +694,7 @@ function UpdateCourse(props) {
 
 
 
-
-                                                          
-                                            </div>
-
-
-                                        </div>   
-
+                                        
                                         <div className="flex items-center justify-between">
                                            
 

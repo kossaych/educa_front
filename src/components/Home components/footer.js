@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4  w-full ">
+    <footer className="bg-gray-800 text-white p-1  w-full   " hidden>
       <div className="container mx-auto">
         <div className="flex justify-center items-center">
           <div className="mr-4">
@@ -22,7 +22,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <p className="text-center mt-4">
+        <p hidden className="text-center mt-4">
           © {new Date().getFullYear()} Educa. Tous droits réservés.
         </p>
       </div>

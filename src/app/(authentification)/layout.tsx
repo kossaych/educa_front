@@ -26,18 +26,16 @@ export default function RootLayout({
 
   //if (typeof window !==  "undefined") { 
       return (
-        <html lang="en">
-          <body className={inter.className}>
+     
             <div className="bg-white-100 ">
-              <Footer></Footer>
-              {localStorage.getItem('token')  != '' ?   <HeaderLogedIn></HeaderLogedIn> : <div className='hidden'><HeaderLogedOut ></HeaderLogedOut></div> }
-               
+                <br></br><br></br><br></br> 
                 {children}
             </div>
-          </body>
-        </html>
+       
       )
 }//}
+
+
 
 
 

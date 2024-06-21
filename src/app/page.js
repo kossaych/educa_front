@@ -1,5 +1,6 @@
 'use client' 
 import HomeLogedIn from "@/components/Home components/home_loged_in";   
+import Login from "./(authentification)/login/page";
 export default function Home() { 
   
   if (typeof window !== "undefined") { 
@@ -10,9 +11,9 @@ export default function Home() {
         }
         else{
             return ( 
-                <>
-                  you are not loged in
-                </>
+              <div> 
+                    <Login></Login>
+              </div>
             )
         }
   }

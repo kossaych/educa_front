@@ -2,6 +2,7 @@
  
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { CiEdit } from 'react-icons/ci';
 import { VscAdd, VscEdit } from 'react-icons/vsc';
 
 const Courses = () => {
@@ -21,7 +22,7 @@ const Courses = () => {
 
   useEffect(()=>{
 
-    fetch("https://educabackend.pythonanywhere.com/content/api/get_teacher_courses/", {
+    fetch("http://192.168.1.111:8000/content/api/get_teacher_courses/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +85,7 @@ const Courses = () => {
                               <th scope="col" class="px-6 py-3">
                                   chapiter
                               </th>
-                              <th scope="col" class="px-6 py-3">
+                              <th scope="col" class=" hidden px-6 py-3">
                                   Status
                               </th>
                               <th scope="col" class="px-6 py-3">
@@ -102,7 +103,7 @@ const Courses = () => {
                                       <td class="px-1 py-2 text-center" >
                                           {course.chapiter}
                                       </td>
-                                      <td class="px-1 py-2 text-center" >
+                                      <td class="px-1 py-2 text-center hidden " >
                                           <div class="flex items-center justify-center">
                                               {course.status == 'publeshed' ? <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2">  </div> : ""}
                                               {course.status == 'unpubleshed' ? <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> : ""}
@@ -114,7 +115,9 @@ const Courses = () => {
                                       <td class="px-1 py-2 text-center" >
                                         
                                           <Link className="text-center" href={`/courses/update/${course.id}`} key={course.id}> 
-                                              <div className = 'm-auto rounded-lg bg-emerald-600 flex justify-center items-center  w-10 p-1 text-white'><VscEdit  size = {25}></VscEdit></div>
+                                              <div className = '  rounded-full flex justify-center items-center  bg-emerald-200    '>
+                                                   <CiEdit className=' text-emerald-900' size={25}></CiEdit> 
+                                              </div>
 
                                           </Link>
                                       </td>

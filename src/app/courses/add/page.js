@@ -14,8 +14,7 @@ function Register() {
     title : '',
     chapiter : '',
     status : 'unpublished',  
-    levels :[]
- 
+    levels :[] 
   });
  
   const [chapiters, setChapiters] = useState([]);
@@ -46,7 +45,7 @@ function Register() {
 
     const handleCreateCourse = () => { 
     setIsWaiting(true);
-    fetch("https://educabackend.pythonanywhere.com/content/api/course/", {
+    fetch("http://192.168.1.111:8000/content/api/course/", {
       method: "post",
       headers: {
          'Authorization': 'token ' + JSON.parse(localStorage.getItem('token')),
@@ -75,7 +74,7 @@ function Register() {
 
    // fetch chapiters
    useEffect(()=>{
-    fetch("https://educabackend.pythonanywhere.com/content/api/get_teacher_desipline_chapiters/", {
+    fetch("http://192.168.1.111:8000/content/api/get_teacher_desipline_chapiters/", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -112,11 +111,7 @@ function Register() {
    ;},[course])
 
   const handleLevelSelection = (e) => {
-    console.log(e.target.checked,e.target.id)
-    console.log(course.levels)
-
-
-    
+ 
     let HandledLevels = course.levels
     if(e.target.checked) {
       HandledLevels.push(e.target.id)
@@ -127,18 +122,8 @@ function Register() {
       ...prevCourse,  
       levels: HandledLevels  
     }));
-
-
-
-
-
-    console.log(course.levels)
-  }
-
-
  
-
-
+  }
  
   return (
         <div className="text-center rounded bg-white  border    my-3 p-1 mx-3 ">
@@ -170,11 +155,7 @@ function Register() {
                                                                 ))}    
                                                         </select> 
                                           </div> 
-
-
-
  
-
                                     <div className="border border-black rounded">
                                             <h3> selectionez les niveaux qui peuvent voir ce cour</h3>
                                             <div    className="  h-28 rounded overflow-scroll">
