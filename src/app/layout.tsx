@@ -23,7 +23,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {  
-  const   const [token, setToken] = useState(null);
+  const [token, setToken] = useState(null);
  
   useEffect(() => {
     const setToken(window.localStorage.getItem("token"));
