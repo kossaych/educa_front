@@ -1,8 +1,7 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import Link from 'next/link';
+import React, { useEffect, useState } from "react"; 
 import PopUp from '/src/components/general/pop-up.js'
-import { VscAdd, VscDeviceCamera, VscDeviceCameraVideo, VscEdit, VscEye, VscEyeClosed, VscFile, VscFilePdf, VscGift, VscListFilter, VscListFlat, VscListOrdered, VscLock, VscMegaphone, VscScreenFull, VscScreenNormal, VscTrash, VscTriangleRight, VscWatch } from "react-icons/vsc";
+import { VscAdd,  VscDeviceCameraVideo , VscEye, VscEyeClosed , VscFilePdf, VscGift , VscListOrdered, VscLock , VscTrash  } from "react-icons/vsc";
 import { CiBookmarkCheck, CiBoxList, CiEdit, CiTrash, CiYoutube } from "react-icons/ci";
 
 
