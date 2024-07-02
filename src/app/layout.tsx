@@ -22,13 +22,12 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) { 
-  const [token, setToken] = useState(null);
-
+}) {  
+  
   useEffect(() => {
-    const savedToken = window.localStorage.getItem("token");
-    setCount(savedToken);
+    const token = window.localStorage.getItem("token"); 
   }, []);
+ 
   if (typeof window !==  "undefined") { 
       return (
         <html lang="en">
@@ -42,7 +41,10 @@ export default function RootLayout({
           </body>
         </html>
       )
-}}
+}
+
+
+}
 
 
 
