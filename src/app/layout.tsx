@@ -23,10 +23,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {  
-  const [token, setToken] = useState('');
+  const [logedIn, setLogedIn] = useState('');
  
   useEffect(() => {
-    setToken(window.localStorage.getItem("token"));
+    setLogedIn(window.localStorage.getItem("token") != null);
   }, []);
  
   if (typeof window !==  "undefined") { 
