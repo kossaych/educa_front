@@ -30,7 +30,7 @@ export default function RootLayout({
           <body className={inter.className}>
             <div className="bg-white-100 ">
               <Footer></Footer>
-              {localStorage.getItem('token')  != '' ?   <HeaderLogedIn></HeaderLogedIn> : <div className='hidden'><HeaderLogedOut ></HeaderLogedOut></div> }
+                  <div className='hidden'><HeaderLogedOut ></HeaderLogedOut></div> 
                
                 {children}
             </div>
