@@ -26,7 +26,7 @@ export default function RootLayout({
   const [token, setToken] = useState(null);
  
   useEffect(() => {
-    const setToken(window.localStorage.getItem("token"));
+    setToken(window.localStorage.getItem("token"));
   }, []);
  
   if (typeof window !==  "undefined") { 
