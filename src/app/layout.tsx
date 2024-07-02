@@ -23,14 +23,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) { 
+  const [token, setToken] = useState(null);
 
+  useEffect(() => {
+    const savedToken = window.localStorage.getItem("token");
+    setCount(savedToken);
+  }, []);
   if (typeof window !==  "undefined") { 
       return (
         <html lang="en">
           <body className={inter.className}>
             <div className="bg-white-100 ">
               <Footer></Footer>
-                  <div className='hidden'><HeaderLogedOut ></HeaderLogedOut></div> 
+              {token  != '' ?   <HeaderLogedIn></HeaderLogedIn> : <div className='hidden'><HeaderLogedOut ></HeaderLogedOut></div> }
                
                 {children}
             </div>
