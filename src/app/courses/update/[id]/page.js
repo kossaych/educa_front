@@ -430,7 +430,7 @@ function UpdateCourse(props) {
                                           </div> 
                                           { series.length != 0 ? <div className="bg-gray-100 justify-center rounded-lg mb-1 pb-1 md:p-2">
                                                   {series.map((serie, index) => (
-                                                    <div className="flex h-12 items-center justify-around border-b border-emerald-900 mb-2 mx-0.5" key={index}>
+                                                    <div key={serie.id} className="flex h-12 items-center justify-around border-b border-emerald-900 mb-2 mx-0.5" key={index}>
                                                       <VscListOrdered size={20} className='text-blue-500' />
                                                       <input 
                                                         value={serie.title}
@@ -458,7 +458,7 @@ function UpdateCourse(props) {
 
 
 
-                                                      <label className="bg-red-200 text-red-500 rounded-full p-1">
+                                                      <label className="bg-red-200 text-red-500 rounded-full p-1">  
                                                         <VscFilePdf size={19} />
                                                         <input 
                                                           type="file" 
