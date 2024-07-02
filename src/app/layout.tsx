@@ -26,7 +26,7 @@ export default function RootLayout({
   const [logedIn, setLogedIn] = useState(false);
  
   useEffect(() => {
-    setLogedIn(window.localStorage.getItem("token") != null);
+    setLogedIn(window.localStorage.getItem("token") != '');
   }, []);
  
   if (typeof window !==  "undefined") { 
