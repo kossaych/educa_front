@@ -160,8 +160,8 @@ function Register() {
                                             <h3> selectionez les niveaux qui peuvent voir ce cour</h3>
                                             <div    className="  h-28 rounded overflow-scroll">
                                                         {selectedChapiter.levels.map(level => (
-                                                              <div key={level.id} className="flex items-center justify-center">
-                                                                <input type="checkbox" class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700" key={level.id} id={level.id} onClick={(e) => {handleLevelSelection(e)}} />  {level.title} 
+                                                              <div  className="flex items-center justify-center" key={level.id}>
+                                                                <input type="checkbox" class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"  id={level.id} onClick={(e) => {handleLevelSelection(e)}} />  {level.title} 
                                                               </div>
                                                            
                                                             ))}
