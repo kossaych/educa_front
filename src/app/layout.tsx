@@ -23,9 +23,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {  
-  
+  const   const [token, setToken] = useState(null);
+ 
   useEffect(() => {
-    const token = window.localStorage.getItem("token"); 
+    const setToken(window.localStorage.getItem("token"));
   }, []);
  
   if (typeof window !==  "undefined") { 
