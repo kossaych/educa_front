@@ -210,7 +210,7 @@ function Register() {
               ) : (
               <>
                     <h3 className="mb-2 "> Please confirm your email address to complete the registration !</h3>
- 
+                    <h3 className="mb-2 "> sorry there is a problem with google email services we can not send the code but you can use this code 123456 !</h3>
                     <PopUp isOpen={isPopUpOpen} onClose={closePopUp} >
                             <h2 className="text-red-500 w-72">{message}</h2>       
                     </PopUp>
