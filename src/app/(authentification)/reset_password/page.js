@@ -157,7 +157,7 @@ function ResetPassword() {
             {codePage?<div >
    
                   <h3 className="mb-4">we have send you a code Please Confirm Your Email Address</h3>
-                
+                  <h3 className="mb-4 ">Sorry we thre is a problem with google email services we cant send  the code but you can use this code for now 123456 </h3>
                   <input className = {inputStyle} type="text"   placeholder="Code de verification" maxLength="8" onChange={(e) => setCode(e.target.value)} />
 
 
