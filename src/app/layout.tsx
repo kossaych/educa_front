@@ -32,6 +32,9 @@ export default function RootLayout({
   if (typeof window !==  "undefined") { 
       return (
         <html lang="en">
+         <header>
+          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+          </header>
           <body className={inter.className}>
             <div className="bg-white-100 ">
               <Footer></Footer>
